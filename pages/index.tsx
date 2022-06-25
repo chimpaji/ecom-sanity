@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterBanner from '../components/FooterBanner';
 import HeroBanner from '../components/HeroBanner';
+import Product from '../components/Product';
 
 import { client } from '../lib/client';
 import { Banner, BannerData, Products } from './types';
@@ -24,10 +25,10 @@ const Home = ({ products, bannerData }: HomeProps) => {
       </div>
       <div className='products-container'>
         {products?.map((p, k) => (
-          <div key={k}>{p.name}</div>
+          <Product key={p._id} product={p} />
         ))}
       </div>
-      <FooterBanner />
+      <FooterBanner footerBanner={bannerData.length ? bannerData[0] : null} />
     </>
   );
 };
