@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import toast from 'react-hot-toast';
