@@ -18,11 +18,15 @@ type ProductDetialsProps = {
 };
 
 const ProductDetails = ({ products, product }: ProductDetialsProps) => {
-  console.log('product', product);
-  console.log('products', products);
-  const { image, name, details, price } = product || {};
+  // console.log('product', product);
+  // console.log('products', products);
+  const { _id, image, name, details, price } = product || {};
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const handleBuyNow = (product, quantity) => {
+    onAdd(product, quantity);
+    setShowCart(true);
+  };
   return (
     <div>
       <div className='product-detail-container'>
@@ -82,7 +86,11 @@ const ProductDetails = ({ products, product }: ProductDetialsProps) => {
             >
               Add to Cart
             </button>
-            <button type='button' className='buy-now'>
+            <button
+              type='button'
+              className='buy-now'
+              onClick={() => handleBuyNow(product, qty)}
+            >
               Buy Now
             </button>
           </div>
