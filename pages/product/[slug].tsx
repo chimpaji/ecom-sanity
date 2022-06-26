@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 import React, { useState } from 'react';
 import {
