@@ -4,7 +4,7 @@ import HeroBanner from '../components/HeroBanner';
 import Product from '../components/Product';
 
 import { client } from '../lib/client';
-import { Banner, BannerData, Products } from './types';
+import { BannerData, Products } from './types';
 
 type HomeProps = {
   products: Products;
@@ -12,9 +12,6 @@ type HomeProps = {
 };
 
 const Home = ({ products, bannerData }: HomeProps) => {
-  console.log('products', products);
-  console.log('banner', bannerData);
-
   return (
     <>
       <HeroBanner heroBanner={bannerData.length ? bannerData[0] : null} />
