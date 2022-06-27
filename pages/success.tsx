@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useStateContext } from '../context/StateContext';
+import { StateContext, useStateContext } from '../context/StateContext';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { runFirework } from '../lib/utils';
 const Sucess = () => {
   //clearCart
-  const { setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
+  const { setCartItems, setTotalPrice, setTotalQuantities } =
+    useStateContext() as StateContext;
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
