@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import Link from 'next/link';
 import { urlFor } from '../lib/client';
@@ -15,11 +14,12 @@ const HeroBanner = ({ heroBanner }: HeroBannerProps) => {
         <p className='beats-solo'>{heroBanner?.smallText}</p>
         <h3>{heroBanner?.midText}</h3>
         <h1>{heroBanner?.largeText1}</h1>
-        <img
-          src={urlFor(heroBanner?.image)}
+        <Image
+          src={urlFor(heroBanner?.image).toString()}
           alt='headphones'
           width={500}
           height={500}
+          layout='raw'
           className='hero-banner-image'
         />
         <div>

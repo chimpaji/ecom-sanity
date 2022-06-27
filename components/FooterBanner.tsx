@@ -1,9 +1,8 @@
-// @ts-nocheck
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { urlFor } from '../lib/client';
 import { Banner } from '../pages/types';
-
 type FooterBannerProps = {
   footerBanner: Banner | null;
 };
@@ -39,7 +38,14 @@ const FooterBanner = ({ footerBanner }: FooterBannerProps) => {
             <button type='button'>{buttonText}</button>
           </Link>
         </div>
-        <img src={urlFor(image)} className='footer-banner-image' />
+        <Image
+          src={urlFor(image).toString()}
+          alt='footer-banner-image'
+          className='footer-banner-image'
+          width={350}
+          height={350}
+          layout='raw'
+        />
       </div>
     </div>
   );

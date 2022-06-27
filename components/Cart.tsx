@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import toast from 'react-hot-toast';
@@ -8,10 +7,11 @@ import {
   AiOutlinePlus,
   AiOutlineShopping,
 } from 'react-icons/ai';
-import { useStateContext } from '../context/StateContext';
+import { StateContext, useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 import { TiDeleteOutline } from 'react-icons/ti';
 import getStripe from '../lib/stripe';
+import Image from 'next/image';
 const Cart = () => {
   const {
     totalPrice,
@@ -20,7 +20,7 @@ const Cart = () => {
     setShowCart,
     toggleCartItemQuanitity,
     onRemove,
-  } = useStateContext();
+  } = useStateContext() as StateContext;
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -72,9 +72,15 @@ const Cart = () => {
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
               <div className='product' key={item._id}>
-                <img
-                  src={urlFor(item?.image[0])}
+                <Image
+                  src={urlFor(item.image.length && item?.image[0])
+                    .width(350)
+                    .height(350)
+                    .toString()}
                   className='cart-product-image'
+                  width='350'
+                  height='350'
+                  alt='product-img'
                 />
                 <div className='item-desc'>
                   <div className='flex top'>
@@ -106,7 +112,7 @@ const Cart = () => {
                     <button
                       type='button'
                       className='remove-item'
-                      onClick={() => onRemove(item)}
+                      onClick={() => onRemove(item._id)}
                     >
                       <TiDeleteOutline />
                     </button>

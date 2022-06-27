@@ -1,11 +1,11 @@
-// @ts-nocheck
 import Link from 'next/link';
 import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useStateContext } from '../context/StateContext';
+import { StateContext, useStateContext } from '../context/StateContext';
 import Cart from './Cart';
 const Navbar = () => {
-  const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const { showCart, setShowCart, totalQuantities } =
+    useStateContext() as StateContext;
   return (
     <div className='navbar-container'>
       <p>

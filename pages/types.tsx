@@ -2,6 +2,10 @@ export type Product = typeof dummyProduct;
 
 export type Products = Product[];
 
+export interface CartItem extends Product {
+  quantity: number;
+}
+
 export type Banner = typeof dummyBanner;
 
 export type BannerData = Banner[];

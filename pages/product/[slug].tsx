@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { GetStaticProps, GetStaticPropsContext } from 'next';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import {
   AiFillStar,
@@ -8,7 +7,7 @@ import {
   AiOutlineStar,
 } from 'react-icons/ai';
 import { Product } from '../../components';
-import { useStateContext } from '../../context/StateContext';
+import { StateContext, useStateContext } from '../../context/StateContext';
 
 import { client, urlFor } from '../../lib/client';
 import { Product as ProductType, Products } from '../types';
@@ -23,8 +22,9 @@ const ProductDetails = ({ products, product }: ProductDetialsProps) => {
   // console.log('products', products);
   const { _id, image, name, details, price } = product || {};
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
-  const handleBuyNow = (product, quantity) => {
+  const { decQty, incQty, qty, onAdd, setShowCart } =
+    useStateContext() as StateContext;
+  const handleBuyNow = (product: ProductType, quantity: number) => {
     onAdd(product, quantity);
     setShowCart(true);
   };
@@ -33,16 +33,24 @@ const ProductDetails = ({ products, product }: ProductDetialsProps) => {
       <div className='product-detail-container'>
         <div>
           <div className='image-container'>
-            <img
-              src={urlFor(image && image[index])}
+            <Image
+              src={urlFor(image && image[index]).toString()}
+              layout='raw'
+              width={350}
+              height={350}
+              alt='product-img'
               className='product-detail-image'
             />
           </div>
           <div className='small-images-container'>
             {image?.map((item, i) => (
-              <img
+              <Image
                 key={i}
-                src={urlFor(item)}
+                src={urlFor(item).toString()}
+                width={70}
+                height={70}
+                layout='raw'
+                alt='product-small-img'
                 className={
                   i === index ? 'small-image selected-image' : 'small-image'
                 }
@@ -112,10 +120,6 @@ const ProductDetails = ({ products, product }: ProductDetialsProps) => {
   );
 };
 
-type PageParams = {
-  slug: string;
-};
-
 export const getStaticPaths = async () => {
   const query = `*[_type == "product"] {
         slug {
@@ -123,7 +127,7 @@ export const getStaticPaths = async () => {
         }
       }
       `;
-  const products = await client.fetch(query);
+  const products = (await client.fetch(query)) as ProductType[];
   //paths = [{params:{slug:'headphone'}},{params:{slug:'inear'}}]
   const paths = products?.map((product) => ({
     params: {
@@ -137,7 +141,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params: { slug } }) => {
+export const getStaticProps = async ({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) => {
   const productQuery = `*[_type == "product" && slug.current=='${slug}'][0]`;
   const product = await client.fetch(productQuery);
 
