@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { urlFor } from '../lib/client';
 import Image from 'next/image';
-import { Banner } from '../pages/types';
+import { Banner } from '../types/types';
 type HeroBannerProps = {
   heroBanner: Banner | null;
 };

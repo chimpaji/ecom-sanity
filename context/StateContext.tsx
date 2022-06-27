@@ -7,7 +7,7 @@ import React, {
   SetStateAction,
 } from 'react';
 import { toast } from 'react-hot-toast';
-import { CartItem, Product, Products } from '../pages/types';
+import { CartItem, Product, Products } from '../types/types';
 
 export type StateContext = {
   showCart: boolean;

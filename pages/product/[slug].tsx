@@ -10,7 +10,7 @@ import { Product } from '../../components';
 import { StateContext, useStateContext } from '../../context/StateContext';
 
 import { client, urlFor } from '../../lib/client';
-import { Product as ProductType, Products } from '../types';
+import { Product as ProductType, Products } from '../../types/types';
 
 type ProductDetialsProps = {
   products: Products;

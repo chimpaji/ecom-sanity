@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { urlFor } from '../lib/client';
-import { Product } from '../pages/types';
+import { Product } from '../types/types';
 type ProductProps = {
   product: Product;
 };

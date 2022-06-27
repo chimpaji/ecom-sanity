@@ -4,7 +4,7 @@ import HeroBanner from '../components/HeroBanner';
 import Product from '../components/Product';
 
 import { client } from '../lib/client';
-import { BannerData, Products } from './types';
+import { BannerData, Products } from '../types/types';
 
 type HomeProps = {
   products: Products;

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { urlFor } from '../lib/client';
-import { Banner } from '../pages/types';
+import { Banner } from '../types/types';
 type FooterBannerProps = {
   footerBanner: Banner | null;
 };
